@@ -3,10 +3,10 @@
 #arguments
 config_file=$1
 index=$2 #must be .csv or .tsv
-output=$3 #string for output file name
+output=$3 #string for output file name, will have .txt appended
 chrom=$4 #0-based column with chromosome number
 pos=$5 #0-based column with 1 based position0
-
+concat=$6 #TRUE if you want to concatenate all results together, FALSE otherwise 
 #Note: make sure tabix is a global variable
 out_file=$output".bed"
 out_file_sorted=$output".sorted.bed"
@@ -37,12 +37,20 @@ sort -k1,1n -k2,2n ${out_file} > $out_file_sorted
 #remove file so we don't write into it again
 rm $output
 
-#loop over all the files in the config file and append query results to an output file, label with the input file name
-while IFS= read -r line; do
-    base=`basename ${line} .tsv.bgz`
-    #tabix $line -R $out_file_sorted >> $base
-    tabix $line -R $out_file_sorted | awk -v base=$base '{print $0"\t"base}'>> $output
-done < ${config_file}
+if [ $concat == "TRUE" ]; then
+    echo "test"
+    #loop over all the files in the config file and append query results to an output file, label with the input file name
+    while IFS= read -r line; do
+	base=`basename ${line} .tsv.bgz`
+	#tabix $line -R $out_file_sorted >> $base
+	tabix $line -R $out_file_sorted | awk -v base=$base '{print $0"\t"base}'>> $output".txt"
+    done < ${config_file}
+else
+    while IFS= read -r line; do
+    	base=`basename ${line} .tsv.bgz`
+	tabix $line -h -R $out_file_sorted | awk -v base=$base '{print $0"\t"base}'>> $output"."$base".txt"
+    done < ${config_file}
+fi 
 
 
 #### to do: print out each file to the $base and then jsut select the european p-value 
