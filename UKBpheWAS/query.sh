@@ -48,6 +48,8 @@ if [ $concat == "TRUE" ]; then
 else
     while IFS= read -r line; do
     	base=`basename ${line} .tsv.bgz`
+	#keep file header
+	zcat $line | head -n 1 -> $output"."$base".txt"
 	tabix $line -h -R $out_file_sorted | awk -v base=$base '{print $0"\t"base}'>> $output"."$base".txt"
     done < ${config_file}
 fi 
