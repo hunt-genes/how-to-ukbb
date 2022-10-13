@@ -55,7 +55,9 @@ First, we need to create a regions bed file (.bed) or tab-delimited file (.tab) 
 
 Second, we want to perform a tabix query on every file, and write out the results, along with which phecode or trait they are from. We can do with a quick one-liner:
 
-`nohup sh -c  'for f in `ls /path/to/files/*.tsv.bgz`; do base=`basename $f .tsv.bgz`; tabix $f -R top_hits.tab | awk -v base=$base '\''{print $0\"\t"base}'\''; done >> query.txt' &`
+```
+nohup sh -c  'for f in `ls /home/bwolford/scratch/panukbb/phecode/*.tsv.bgz`; do base=`basename $f -both_sexes.tsv.bgz`; tabix $f -R top_hits.tab | awk -v base=$base '\''{print $0"\t"base}'\''; done >> phecode.query.txt' &
+```
 
 But the `query.sh` file will combine these steps if you provide
 1) a config file with one summary stat file per line, make sure to include the full path and that the file has been tabix and bgzipped with ending .tsv.bgz
@@ -63,14 +65,16 @@ But the `query.sh` file will combine these steps if you provide
 3) the full, absolute path of an output file 
 do this for a comma or tab separated file if you provide columns for chromosome, position, and position-to with coordinates that are 1-based and inclusive. 
 
-`bash query.sh <file_dir> <output> <region_file>
+`bash query.sh <file_dir> <output> <region_file>`
 
 This could also be parallelized with [BlueBox](https://github.com/huntdatacenter/BlueBox) to run many queries at once. 
 
 You might want to know if there were any of your top hits that couldn't be found in the PheWAS lookup. You can get a list of all the unique SNPs that were found in your query, and then use that file to search with `grep`, but use the `-v` option to find original top SNPs that aren't in the query file.
 
+```
 cut -f 1,2 phecode.query.txt | sort | uniq > variants_found.txt
 grep top_hits.tab -f variants_found.txt -v
+```
 
 ### Step 3. Visualize results by plotting in R
 
