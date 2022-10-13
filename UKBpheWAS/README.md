@@ -43,17 +43,34 @@ We will take advantage of the tabix indexed summary statistics and use tabix to 
 `tabix ~/scratch/panukbb/biomarkers/biomarkers-30860-both_sexes-irnt.tsv.bgz 3:45785914-45785915`
 
 Notes:
-* make sure	the reference genome used for your summary statistics and lead variants	is the same.
+* make sure the reference genome used for your summary statistics and lead variants	is the same.
 * If you are warned that `The index file is older than the data file` this is likely due to the order files were downloaded or the date created. If you are worried about it, you can create a new index file from bgzipped file with `tabix index`
 * Positions may be 0-based or 1-based and represent the start or end of a variant, which may itself be a single nucleotide polymorphism or a multilength insertion/deletion. You can read more about this [here](https://www.biostars.org/p/84686/) and [here](https://arnaudceol.wordpress.com/2014/09/18/chromosome-coordinate-systems-0-based-1-based/).
 
 But you likely have multiple summary statistics (phenome-wide could be thousands) and multiple variants of interest. So we will use `-R --region` command in `tabix` to look through everything. 
 
-First, we need to create a regions bed file (.bed) or tab-delimited file (.tab) with our index variant coordinates. You can read more [here](http://www.htslib.org/doc/tabix.html). The `query.sh` file will do this for a comma or tab separated file if you provide columns for chromosome, position, and position-to with coordinates that are 1-based and inclusive. 
+First, we need to create a regions bed file (.bed) or tab-delimited file (.tab) with our index variant coordinates. You can read more [here](http://www.htslib.org/doc/tabix.html).
+
+`less top_hits.csv  | awk 'NR > 1 {print $0}a' | cut -d "," -f 5,6 | sed 's/,/\t/g' | awk '{print $1"\t"$2"\t"$2}' > top_hits.tab`
+
+Second, we want to perform a tabix query on every file, and write out the results, along with which phecode or trait they are from. We can do with a quick one-liner:
+
+`nohup sh -c  'for f in `ls /path/to/files/*.tsv.bgz`; do base=`basename $f .tsv.bgz`; tabix $f -R top_hits.tab | awk -v base=$base '\''{print $0\"\t"base}'\''; done >> query.txt' &`
+
+But the `query.sh` file will combine these steps if you provide
+1) a config file with one summary stat file per line, make sure to include the full path and that the file has been tabix and bgzipped with ending .tsv.bgz
+2) Your comma or tab separated file with variant information
+3) the full, absolute path of an output file 
+do this for a comma or tab separated file if you provide columns for chromosome, position, and position-to with coordinates that are 1-based and inclusive. 
 
 `bash query.sh <file_dir> <output> <region_file>
 
 This could also be parallelized with [BlueBox](https://github.com/huntdatacenter/BlueBox) to run many queries at once. 
+
+You might want to know if there were any of your top hits that couldn't be found in the PheWAS lookup. You can get a list of all the unique SNPs that were found in your query, and then use that file to search with `grep`, but use the `-v` option to find original top SNPs that aren't in the query file.
+
+cut -f 1,2 phecode.query.txt | sort | uniq > variants_found.txt
+grep top_hits.tab -f variants_found.txt -v
 
 ### Step 3. Visualize results by plotting in R
 
