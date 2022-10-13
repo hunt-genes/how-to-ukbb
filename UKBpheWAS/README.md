@@ -80,4 +80,4 @@ grep top_hits.tab -f variants_found.txt -v
 
 We will use the phenotype manifest file to convert the UKB phenocode with the description and category and desired plotting color in R.
 
-`Rscript plot.R` 
+`Rscript plot_phewas.R` 
