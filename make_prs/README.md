@@ -33,7 +33,7 @@ Where `example_weights.txt` Columns MUST be in this order (chr marker_name effec
 Where `example_prs` is the prefix for the output files (can include output directory)        
 
 ## Output   
-`example_prs.log` is details of the analysis
+`example_prs.log` is details of the analysis    
 `example_prs.sscore` is the scores, both unweighted (NAMED_ALLELE_DOSAGE_SUM) and weighted (SCORE1_AVG) 
 
 [BACK-TO-HOME-PAGE](https://github.com/hunt-genes/how-to-ukbb)
