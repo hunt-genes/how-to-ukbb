@@ -5,7 +5,7 @@ Do not transfer individual-level data off the lab
 Summary-level data can be tranfered as per our ethics application and UKBB approval   
 
 ## Description
-This script is to creat a PRS in PLINK2 
+This script is to create a PRS in PLINK2 
 
 ## Dependencies
 To make a PRS you need to already have a pgen file from PLINK with genotype dosages.    
