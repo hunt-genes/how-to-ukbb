@@ -21,7 +21,7 @@ username@hunt-ukbb-home:`bash /mnt/scratch/repo/how-to-ukbb/make_prs/make_prs.sh
 Where `ukb_imp_extract_35snps` is the output from [Extract a genotype file](https://github.com/hunt-genes/how-to-ukbb/blob/main/extract/extract.md)     
 
 ### Input 2 
-Where `example_weights.txt` Columns MUST be in this order!       
+Where `example_weights.txt` Columns MUST be in this order (chr marker_name effect_allele beta)!       
 
 1	rs1933064	A	0.0155068    
 1	rs76798800	G	0.0173898    
