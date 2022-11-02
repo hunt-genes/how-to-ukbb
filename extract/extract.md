@@ -40,4 +40,4 @@ where `ch_rsid.txt` contains the chromosome and rsid:
 
 Please note: the outputformat can be `bgen`, `vcf`, `dose` or `plink2`.
 
-[BACK-TO-HOME-PAGE](https://github.com/benbrumpton/how-to-ukbb)
+[BACK-TO-HOME-PAGE](https://github.com/hunt-genes/how-to-ukbb)
