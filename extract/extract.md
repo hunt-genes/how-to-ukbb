@@ -13,11 +13,15 @@ Fields can be found using the UKB data showcase:
 https://biobank.ndph.ox.ac.uk/ukb/search.cgi     
 
 Once you have a list of fields you can extract them using the below command:    
-username@hunt-ukbb-home:~/scratch/repo/ukb_extract/extract_phe$ `bash extract_phe.sh ~/projects/hla/hla_fields.txt`
+username@hunt-ukbb-home:~/scratch/repo/ukb_extract/extract_phe$ `bash extract_phe.sh ~/projects/example/input_example.txt`
 
-where `hla_fields.txt` contains the list of fields:    
+where `input_example.txt` contains the list of fields:    
 Field_ID     
-22182    
+34
+22001
+22006
+22009
+22000  
 
 Pleas note: ~/projects/hla/hla_fields.txt is just an example
 
