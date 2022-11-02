@@ -19,7 +19,7 @@ Define a binary trait
 [Run a GWAS](launch-ukbb-gwas/README.md)  
 Family-based GWAS     
 [PheWAS](UKBpheWAS/README.md)   
-Construct a PRS    
+[Make a PRS](https://github.com/hunt-genes/how-to-ukbb/tree/main/make_prs)    
 PRS PheWAS     
 One-sample MR     
 Non-linear MR     
