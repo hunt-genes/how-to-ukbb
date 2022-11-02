@@ -1,2 +1,45 @@
-## make_prs
+# make_prs
 
+# Warning!
+Do not transfer individual-level data off the lab    
+Summary-level data can be tranfered as per our ethics application and UKBB approval   
+
+## Description
+This script is to creat a PRS in PLINK2 
+
+## Dependencies
+To make a PRS you need to already have a pgen file from PLINK with genotype dosages.    
+If you need to extract this, please follow these intructions:        
+[Extract a genotype file](https://github.com/hunt-genes/how-to-ukbb/blob/main/extract/extract.md)    
+
+## Step 1
+Run this command from your folder with the input files: 
+username@hunt-ukbb-home:`/mnt/scratch/repo/how-to-ukbb/make_prs.sh ukb_imp_extract_35snps example_weights.txt example_prs`
+
+Where `ukb_imp_extract_35snps`
+
+Where `example_weights.txt`
+
+Where `example_prs`
+
+## Step 2
+Open the script in a text editor and edit the input and output.     
+
+Replace the input and output files (below) with your custom file name and directory you want:      
+`input_file_name <- "/mnt/scratch/examples/ukb_phenotype_2021-09-23.txt.gz"`    
+`output_file_name <- "/mnt/scratch/examples/MN_ICD10_2021-09-23_phenoConstruct.txt"`     
+
+## Step 3
+Replace the ICD code(s) with those that match your phenotype.  
+For example,     
+Replace B27 with J45 if you are interested in asthma.    
+`idx10 <- which(icd_long$ICD10=="B27")` #Exact match    
+`idx10category <- which(icd_long$ICD10category=="B27")` #Match Category     
+
+## Step 5
+Run the script.   
+`Rscript define_ICD_phenotype.R`    
+Wait 5-10 mins.   
+Then collect your file from output file directory.     
+
+[BACK-TO-HOME-PAGE](https://github.com/benbrumpton/how-to-ukbb)
