@@ -36,4 +36,7 @@ Where `example_prs` is the prefix for the output files (can include output direc
 `example_prs.log` is details of the analysis    
 `example_prs.sscore` is the scores, both unweighted (NAMED_ALLELE_DOSAGE_SUM) and weighted (SCORE1_AVG) 
 
+--score applies one or more linear scoring systems to each sample, and reports results to plink2.sscore. More precisely, if G is the full genotype/dosage matrix (rows = alleles, columns = samples) and a is a scoring-system vector with one coefficient per allele, --score computes the vector-matrix product aTG, and then divides by the number of variants when reporting score-averages.    
+https://www.cog-genomics.org/plink/2.0/score    
+
 [BACK-TO-HOME-PAGE](https://github.com/hunt-genes/how-to-ukbb)
