@@ -23,7 +23,7 @@ Field_ID
 22009  
 22000      
 
-Pleas note: ~/projects/hla/hla_fields.txt is just an example
+Pleas note: ~/projects/example/input_example.txt is just an example
 
 ## extract_snp
 Most of the genotypes in biobank are found in the bulk downloads. The most common genotypes of interest are SNPs.    
