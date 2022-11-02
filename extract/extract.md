@@ -17,11 +17,11 @@ username@hunt-ukbb-home:~/scratch/repo/ukb_extract/extract_phe$ `bash extract_ph
 
 where `input_example.txt` contains the list of fields:    
 Field_ID     
-34
-22001
-22006
-22009
-22000  
+34   
+22001   
+22006   
+22009  
+22000      
 
 Pleas note: ~/projects/hla/hla_fields.txt is just an example
 
