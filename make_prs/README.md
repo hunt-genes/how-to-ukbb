@@ -18,7 +18,7 @@ username@hunt-ukbb-home:`/mnt/scratch/repo/how-to-ukbb/make_prs.sh ukb_imp_extra
 
 Where `ukb_imp_extract_35snps` is the output from [Extract a genotype file](https://github.com/hunt-genes/how-to-ukbb/blob/main/extract/extract.md)     
 
-Where `example_weights.txt`    
+Where `example_weights.txt` Columns MUST be in this order!       
 
 1	rs1933064	A	0.0155068    
 1	rs76798800	G	0.0173898    
@@ -26,26 +26,6 @@ Where `example_weights.txt`
 2	rs727857	G	0.0109131    
 2	rs1047891	C	0.0126572    
 
-Where `example_prs` is the prefix for the outpufiles (can include output directory)    
+Where `example_prs` is the prefix for the output files (can include output directory)        
 
-## Step 2
-Open the script in a text editor and edit the input and output.     
-
-Replace the input and output files (below) with your custom file name and directory you want:      
-`input_file_name <- "/mnt/scratch/examples/ukb_phenotype_2021-09-23.txt.gz"`    
-`output_file_name <- "/mnt/scratch/examples/MN_ICD10_2021-09-23_phenoConstruct.txt"`     
-
-## Step 3
-Replace the ICD code(s) with those that match your phenotype.  
-For example,     
-Replace B27 with J45 if you are interested in asthma.    
-`idx10 <- which(icd_long$ICD10=="B27")` #Exact match    
-`idx10category <- which(icd_long$ICD10category=="B27")` #Match Category     
-
-## Step 5
-Run the script.   
-`Rscript define_ICD_phenotype.R`    
-Wait 5-10 mins.   
-Then collect your file from output file directory.     
-
-[BACK-TO-HOME-PAGE](https://github.com/benbrumpton/how-to-ukbb)
+[BACK-TO-HOME-PAGE](https://github.com/hunt-genes/how-to-ukbb)
