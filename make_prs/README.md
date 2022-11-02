@@ -15,7 +15,7 @@ If you need to extract this, please follow these intructions:
 
 ## Step 1
 Run this command from your folder with three **(3)** input files:     
-username@hunt-ukbb-home:`/mnt/scratch/repo/how-to-ukbb/make_prs/make_prs.sh ukb_imp_extract_35snps example_weights.txt example_prs`
+username@hunt-ukbb-home:`bash /mnt/scratch/repo/how-to-ukbb/make_prs/make_prs.sh ukb_imp_extract_35snps example_weights.txt example_prs`
 
 ### Input 1 
 Where `ukb_imp_extract_35snps` is the output from [Extract a genotype file](https://github.com/hunt-genes/how-to-ukbb/blob/main/extract/extract.md)     
