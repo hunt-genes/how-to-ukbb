@@ -30,7 +30,7 @@ Where `example_weights.txt` Columns MUST be in this order (chr marker_name effec
 2	rs1047891	C	0.0126572    
 
 ### Input 3 
-Where `example_prs` is the prefix for the output files (can include output directory)        
+Where `example_prs` is the prefix for the output files (can include output directory. i.e. /mnt/scratch/user/project/)        
 
 ## Output   
 `example_prs.log` is details of the analysis    
