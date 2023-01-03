@@ -29,13 +29,10 @@ df1$grs_marta <- rowSums(df1[7:10])
 df2 <- read.delim2('sunlight_dose.txt.raw', as.is=T, header=T, dec=".")
 df2$w_score <- (df2[,7]*as.numeric(effects[1,2]) + df2[,8]*as.numeric(effects[2,2]) + df2[,9]*as.numeric(effects[3,2]) + df2[,10]*as.numeric(effects[4,2]))
 
-df1$w_score <- (df1[7]*effects[1,2])
-0.0061
-
 # Alternative 3 - Total weighted number of SNPs
 df2$w_avg_score <- ((df2$rs6671730_G*0.0061000 + df2$rs35408430_C*0.0236985 + df2$rs7522116_C*0.0116727 + df2$rs7528419_G*0.0179046)/(0.0061000+0.0236985+0.0116727+0.0179046))*4
 
-# Alternative 4 - PLINK v2  --score cols=+scoresums
+# Alternative 4 - Weighted sum with PLINK v2  --score cols=+scoresums
 # Run this from the terminal
 /mnt/work/software/plink/2/plink2 \
         --out sunlight_prs_4snps \
@@ -60,4 +57,4 @@ for (rsid in names(df1[7:as.integer(nrow(effects)+6)]))
 
 df1$grs_marta2 <- (rowSums(df1[7:as.integer(nrow(effects)+6)])/sum(effects$V4))*as.integer(nrow(effects))
 
-write.table(df1,"/home/benb/scratch/benb/vitD/w_grs_alternatives.txt", sep=",", quote=FALSE,row.names=FALSE,col.names=TRUE)
+#write.table(df1,"/home/benb/scratch/benb/vitD/w_grs_alternatives.txt", sep=",", quote=FALSE,row.names=FALSE,col.names=TRUE)
