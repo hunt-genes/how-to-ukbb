@@ -65,7 +65,7 @@ But the `query.sh` file will combine these steps if you provide
 3) the full, absolute path of an output file 
 do this for a comma or tab separated file if you provide columns for chromosome, position, and position-to with coordinates that are 1-based and inclusive. 
 
-`bash query.sh <file_dir> <output> <region_file>`
+`bash query.sh <file_dir> <region_file> <output_string> <chrom column number> <pos column number> <concatenate TRUE/FALSE>`
 
 This could also be parallelized with [BlueBox](https://github.com/huntdatacenter/BlueBox) to run many queries at once. 
 
